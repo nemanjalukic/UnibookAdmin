@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+	<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html">
+	<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />	
+	<h:outputStylesheet name="css/bootstrap.min.css" />
+	<h:outputScript name="js/bootstrap.min.js"/>
+	
+	<title>Admin login</title>
+</h:head>
+	<h:body>
+	<nav class="navbar navbar-inverse">
+		<div class="navbar-brand">Admin Login</div>
+	</nav>
+<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h:form id="login-form">
+					<div class="form-group">
+						<h:outputLabel>Korisnicko ime:</h:outputLabel>
+						<h:inputText value="${userBean.username}" styleClass="form-control"></h:inputText>
+					</div>
+					<div class="form-group">
+						<h:outputLabel>Lozinka:</h:outputLabel>
+						<h:inputSecret value="${userBean.password}" styleClass="form-control"></h:inputSecret>
+					</div>
+					<div class="form-group">
+						<h:commandButton id="login-btn" value="Prijavi se"
+							action="#{userBean.login}"></h:commandButton>
+						<br />
+						<h:message for="login-btn" />
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</div>
+	</h:body>
+</html>

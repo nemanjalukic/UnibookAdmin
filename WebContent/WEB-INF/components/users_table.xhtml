@@ -1,0 +1,88 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+
+	<div class="col-sm-12">
+		<h:form>
+			<p:selectOneButton value="#{userBean.idUserGroup}">
+				<f:selectItem itemValue="3" itemLabel="Svi korisnici"></f:selectItem>
+				<f:selectItem itemValue="1" itemLabel="Aktivni korisnici"></f:selectItem>
+				<f:selectItem itemValue="0" itemLabel="Registrovani korisnici"></f:selectItem>
+				<f:selectItem itemValue="2" itemLabel="Blokirani korisnici"></f:selectItem>
+				<p:ajax update="table-form" listener="#{userBean.getByUserGroup()}" />
+			</p:selectOneButton>
+		</h:form>
+		<h:form id="table-form">
+			<p:dataTable var="row" value="#{userBean.userList}"
+				styleClass="table" headerClass="table-header"
+				rowClasses="table-odd-row,table-even-row">
+				<p:column  style="width:50px">
+					<p:rowToggler/>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Username</f:facet>
+							#{row.username}
+						</p:column>
+				<p:column>
+					<f:facet name="header">First Name</f:facet>
+							#{row.ime}
+						</p:column>
+
+				<p:column>
+					<f:facet name="header">Last Name</f:facet>
+							#{row.prezime}
+						</p:column>
+				<p:column>
+					<f:facet name="header">Fakultet</f:facet>
+							#{row.fakultet.naziv}
+						</p:column>
+				<p:column>
+					<f:facet name="header">Email</f:facet>
+							#{row.email}
+						</p:column>
+				<p:column style="width:150px">
+					<f:facet name="header">Status</f:facet>
+							#{row.getStatusName()}
+						</p:column>
+				<p:column style="width:300px">
+					<f:facet name="header">Action</f:facet>
+					<h:commandLink value="#{userBean.getActionByStatus(row.status)}"
+						action="#{userBean.changeUserStatus}" >
+						<f:param value="${row.id}" name="id" />
+						</h:commandLink>
+						<h:outputText value=" | " />
+					<h:commandLink value="Reset password"
+						action="#{userBean.resetPassword}" >
+						<f:param value="${row.id}" name="id" />
+						</h:commandLink>
+						
+						
+				</p:column>
+<p:rowExpansion>
+            <p:panelGrid columns="2">
+                <f:facet name="header">
+                #{row.username}
+                </f:facet>
+                
+ 				<h:outputText value="Slika" />
+                <p:graphicImage style="width:300px" name="/images/#{row.slika}"/> 
+                
+                <h:outputText value="Godina studija" />
+                <h:outputText value="#{row.godinaStudija}" />
+                
+ 				<h:outputText value="Studijski program" />
+                <h:outputText value="#{row.studijskiProgram}" />
+                
+                <h:outputText value="Interesovanje" />
+                <h:outputText value="#{row.interesovanje}" />
+
+            </p:panelGrid>
+        </p:rowExpansion>
+			</p:dataTable>
+		</h:form>
+	</div>
+</ui:composition>
+</html>

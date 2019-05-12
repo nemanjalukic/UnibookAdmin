@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:head/>
+<ui:composition>
+<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h:form id="login-form">
+					<div class="form-group">
+						<h:outputLabel>Korisnicko ime:</h:outputLabel>
+						<h:inputText value="${userBean.username}" styleClass="form-control"></h:inputText>
+					</div>
+					<div class="form-group">
+						<h:outputLabel>Lozinka:</h:outputLabel>
+						<h:inputSecret value="${userBean.password}" styleClass="form-control"></h:inputSecret>
+					</div>
+					<div class="form-group">
+						<h:commandButton id="login-btn" value="Prijavi se"
+							action="#{userBean.login}"></h:commandButton>
+						<br />
+						<h:message for="login-btn" />
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</div>
+</ui:composition>
+</html>

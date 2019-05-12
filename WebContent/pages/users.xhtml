@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+<ui:composition template="/WEB-INF/templates/template.xhtml">
+	<ui:define name="header">
+		<ui:include src="/WEB-INF/components/menu_users.xhtml"></ui:include>
+	</ui:define>
+	<f:metadata>
+		<f:viewAction action="#{userBean.getByUserGroup()}"></f:viewAction>
+	</f:metadata>
+	<ui:define name="body">
+		<div id="table">
+			<ui:include src="/WEB-INF/components/users_table.xhtml"></ui:include>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

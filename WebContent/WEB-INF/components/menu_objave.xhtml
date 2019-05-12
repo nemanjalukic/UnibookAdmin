@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head />
+<ui:composition>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"></a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><h:outputLink value="podaci.xhtml">Podaci</h:outputLink></li>
+					<li><h:outputLink value="users.xhtml">Korisnici</h:outputLink></li>
+					<li class="dropdown active"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="#">Objave<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><h:outputLink value="objave.xhtml">Objave korisnika</h:outputLink></li>
+							<li><h:outputLink value="dogadjaji.xhtml">Dogadjaji</h:outputLink></li>
+							<li><h:outputLink value="vijesti.xhtml">Vijesti</h:outputLink></li>
+						</ul></li>
+				</ul>
+				<h:form>
+					<ul class="nav navbar-nav navbar-right">
+						<li><h:commandLink action="#{userBean.logout()}">Logout</h:commandLink></li>
+					</ul>
+				</h:form>
+			</div>
+		</div>
+	</nav>
+</ui:composition>
+</html>

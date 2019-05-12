@@ -1,0 +1,81 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<div class="col-sm-12">
+		<h:form id="table-form">
+			<p:dataTable var="row" value="#{objavaBean.objaveKorisnik}"
+				styleClass="table" headerClass="table-header"
+				rowClasses="table-odd-row,table-even-row">
+				<p:column  style="width:50px">
+					<p:rowToggler/>
+				</p:column>
+				<p:column  style="word-break: break-word">
+					<f:facet name="header">Sadrzaj</f:facet>
+							#{row.sadrzaj}
+						</p:column>
+				<p:column>
+					<f:facet name="header">Tip</f:facet>
+							#{row.getTipString()}
+						</p:column>
+				<p:column>
+					<f:facet name="header">Korisnik</f:facet>
+							#{row.user.username}
+						</p:column>
+				<p:column style="width:100px">
+					<f:facet name="header">Lajkovi</f:facet>
+							#{row.likes}
+						</p:column>
+				<p:column style="width:100px">
+					<f:facet name="header">Dislajkovi</f:facet>
+							#{row.dislikes}
+						</p:column>
+				<p:column style="word-break: break-word">
+					<f:facet name="header">Vrijeme kreiranja</f:facet>
+							#{row.getVrijemeKreiranjaString()}
+						</p:column>
+				<p:column>
+					<f:facet name="header">Action</f:facet>
+					<h:commandLink value="Obrisi"
+						action="#{objavaBean.obrisiObjavu}" >
+						<f:param value="${row.id}" name="idObjava" />
+						</h:commandLink>
+				</p:column>
+<p:rowExpansion>
+            <p:panelGrid  columns="2" style="width:500px">
+                <f:facet name="header">
+                #{row.user.username}
+                </f:facet>
+ 				<h:outputText value="Ime" />
+                <h:outputText value="#{row.user.ime}" />
+                
+                <h:outputText value="Prezime" />
+                <h:outputText value="#{row.user.prezime}" />
+                
+                <h:outputText value="Slika" />
+                <p:graphicImage  style="width:200px" name="/images/#{row.user.slika}"/> 
+                
+                <h:outputText value="Email" />
+                <h:outputText value="#{row.user.email}" />
+ 
+                <h:outputText value="Fakultet" />
+                <h:outputText value="#{row.user.fakultet.naziv}" />
+                
+                 <h:outputText value="Studijski program" />
+                <h:outputText value="#{row.user.studijskiProgram}" />
+                
+                 <h:outputText value="Godina studija" />
+                <h:outputText value="#{row.user.godinaStudija}" />
+                
+                 <h:outputText value="Interesovanje" />
+                <h:outputText value="#{row.user.interesovanje}" />
+
+            </p:panelGrid>
+        </p:rowExpansion>
+			</p:dataTable>
+		</h:form>
+	</div>
+</ui:composition>
+</html>
